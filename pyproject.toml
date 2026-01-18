@@ -7,7 +7,14 @@ authors = [
     { name = "Alexis Perez", email = "alexispdDev@gmail.com" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "keras-image-helper==0.0.2",
+    "numpy==2.4.1",
+    "onnxscript==0.5.7",
+    "pillow==12.1.0",
+    "torch==2.9.1",
+    "torchvision==0.24.1",
+]
 
 [project.scripts]
 waste-classification = "waste_classification:main"
@@ -15,3 +22,8 @@ waste-classification = "waste_classification:main"
 [build-system]
 requires = ["uv_build>=0.9.26,<0.10.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ipykernel==7.1.0",
+]
