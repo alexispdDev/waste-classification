@@ -15,7 +15,7 @@ The project focuses on the task of multi class garbage image classification usin
 
 ### Exploration
 
-A detailed exploratory notebook describing the experiments and modeling decisions can be found at [here](../src/waste_classification/notebook.ipynb).
+A detailed exploratory notebook describing the experiments and modeling decisions can be found at [here](../notebook.ipynb).
 
 ## Dataset description
 
