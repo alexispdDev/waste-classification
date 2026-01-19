@@ -124,7 +124,7 @@ curl -X 'POST' \
     - Horizontal pod auto-scales
 
 > [!IMPORTANT]
-> If using Kind, you would need to load your image to the cluster (folow the instructions [here](https://github.com/DataTalksClub/machine-learning-zoomcamp/tree/master/10-kubernetes/workshop#loading-image-to-kind), but remember to use the correct name (in this case, `waste-classification:v1`)).
+> If using Kind, you would need to load your image to the cluster (folow the instructions [here](https://github.com/DataTalksClub/machine-learning-zoomcamp/tree/master/10-kubernetes/workshop#loading-image-to-kind), but remember to use the correct name, in this case, `waste-classification:v1`).
 > 
 > If you're not using Kind, then you're responsible to make the image available to the cluster. You would need to load the image into a separate image registry, or manually load the image into the cluster's nodes.
 
@@ -146,3 +146,5 @@ $ kubectl port-forward -n waste-classification service/waste-classification 3008
 and, afterwards, you can interact with your deployment at http://localhost:30080.
 
 If you're using other clusters, the service is exposed as a NodePort to port 30080, so you can interact with this service through http://NODE_IP:30080.
+
+Now, follow as described in "How to make a classification" to classify waste images, replacing http://localhost:8080/predict for http://localhost:30080/predict in both cases: via curl and via Browser.
