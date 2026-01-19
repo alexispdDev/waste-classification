@@ -20,7 +20,7 @@ mean = [0.485, 0.456, 0.406]
 std = [0.229, 0.224, 0.225]
 
 learning_rate = 0.01
-size_inner = 10
+size_inner = 100
 num_epochs = 50
 
 # Architecture used during training
