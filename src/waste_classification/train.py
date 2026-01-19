@@ -153,7 +153,7 @@ def train_and_evaluate(model, optimizer, train_loader, val_loader, criterion, nu
 
 def make_model(
         learning_rate=0.01,
-        size_inner=10,
+        size_inner=100,
 ):
     model = WasteClassifierMobileNet(
         num_classes=6,
