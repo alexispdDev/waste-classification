@@ -24,7 +24,7 @@ size_inner = 100
 num_epochs = 50
 
 # Architecture used during training
-trained_size_inner = 10      # ← change to whatever you trained with
+trained_size_inner = 100      # ← change to whatever you trained with
 num_classes        = 6
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
