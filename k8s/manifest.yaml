@@ -1,0 +1,89 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: waste-classification
+spec: {}
+status: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: waste-classification
+  name: waste-classification
+  namespace: waste-classification
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: waste-classification
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: waste-classification
+    spec:
+      containers:
+      - image: waste-classification:v1
+        name: waste-classification
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: waste-classification
+  name: waste-classification
+  namespace: waste-classification
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+    nodePort: 30080
+  selector:
+    app: waste-classification
+  type: NodePort
+status:
+  loadBalancer: {}
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: waste-classification
+  namespace: waste-classification
+spec:
+  maxReplicas: 10
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 50
+        type: Utilization
+    type: Resource
+  minReplicas: 2
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: waste-classification
